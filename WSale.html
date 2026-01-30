@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WSale Project Dashboard</title>
+  <script src="/_sdk/element_sdk.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -67,6 +68,8 @@
       transform: scale(1.05);
     }
   </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
  <body class="bg-gray-50 min-h-screen">
   <div id="app" class="w-full h-full overflow-auto"></div>
@@ -93,23 +96,23 @@
     let activeTab = 'dashboard';
     
     const projectData = {
-      overallProgress: 38,
+      overallProgress: 33,
       totalTasks: 5,
       doneTasks: 1,
       mainTasks: [
-        { title: "Nâng cấp hạ tầng K8s cụm API TLS Inside (1/1-30/1)", status: "IN PROGRESS", progress: "90%", group: "Infrastructure" },
-        { title: "LDP V.VIP MKT: Bổ sung nhận diện tập data từ FMI (5/1-9/1)", status: "DONE", progress: "100%", group: "Marketing" },
-        { title: "LDP V.VIP Map: Tra cứu hạ tầng Wifi 7 & TTKD/VPGD (12/2-23/2)", status: "PENDING", progress: "0%", group: "Features" },
-        { title: "Autocall: Check blacklist, check trùng SĐT chính chủ (2/2-11/2)", status: "IN PROGRESS", progress: "10%", group: "Automation" },
-        { title: "WSale bản Mobile SOP (24/2-31/3)", status: "PENDING", progress: "0%", group: "Development" }
+        { title: "Nâng cấp hạ tầng K8s cụm API TLS Inside", status: "IN PROGRESS", progress: "80%", group: "Infrastructure" },
+        { title: "LDP V.VIP MKT: Bổ sung nhận diện tập data từ FMI", status: "DONE", progress: "100%", group: "Marketing" },
+        { title: "LDP V.VIP Map: Tra cứu hạ tầng Wifi 7 & TTKD/VPGD", status: "IN PROGRESS", progress: "Phân tích", group: "Features" },
+        { title: "Autocall: Check blacklist, check trùng SĐT chính chủ khi đẩy sang Dialo", status: "IN PROGRESS", progress: "10%", group: "Automation" },
+        { title: "WSale bản Mobile SOP", status: "IN PROGRESS", progress: "Phân tích", group: "Development" }
       ],
       nextTwoWeeks: [
-        { category: "Tuần 1 (1/2 - 7/2)", items: ["Autocall: Bắt đầu phân tích yêu cầu check giỏ blacklist", "Nâng cấp K8s: Hoàn thành tuning cuối cùng"] },
-        { category: "Tuần 2 (8/2 - 14/2)", items: ["Autocall: Tiếp tục phát triển check trùng SDT", "LDP V.VIP Map: Bắt đầu phân tích và thiết kế"] }
+        { category: "Phân tích hệ thống", items: ["Phân tích chi tiết LDP V.VIP Map (luồng tra cứu hạ tầng Wifi 7)", "Phân tích thiết kế WSale bản Mobile SOP (giao diện và luồng dữ liệu)"] },
+        { category: "Phát triển (Development)", items: ["Hoàn thiện 20% còn lại của hạ tầng K8s TLS Inside", "Phát triển logic check trùng tự động cho Autocall", "Xây dựng API cho LDP V.VIP Map"] }
       ],
       issues: [
         { title: "Resource dev chưa đáp ứng đủ với số lượng task hiện tại", desc: "Đội ngũ phát triển hiện tại chưa đủ nguồn lực để xử lý song song các task Infrastructure, LDP V.VIP, Autocall và Mobile SOP. Cần bổ sung thêm developer hoặc điều chỉnh ưu tiên.", severity: "Medium", icon: "alert" },
-        { title: "Chưa được hỗ trợ tích hợp Order Service từ SPF", desc: "Việc tích hợp Order Service từ hệ thống SPF chưa được hỗ trợ, ảnh hưởng đến khả năng đồng bộ dữ liệu đơn hàng. Cần liên hệ team SPF để có roadmap rõ ràng.", severity: "High", icon: "alert" }
+        { title: "Chưa được hỗ trợ tích hợp Order Service từ SPF", desc: "Việc tích hợp Order Service từ hệ thống SPF chưa được hỗ trợ, ảnh hưởng đến khả năng đ���ng bộ dữ liệu đơn hàng. Cần liên hệ team SPF để có roadmap rõ ràng.", severity: "High", icon: "alert" }
       ]
     };
 
@@ -234,11 +237,14 @@
       const baseSize = config.font_size || defaultConfig.font_size;
       return `
         <div class="space-y-4 animate-in">
+          <!-- Stats Cards -->
           <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
             <div class="card-hover p-3 rounded-xl shadow-xl border" style="background-color: ${config.surface_color}; border-color: ${config.primary_action}30;">
               <div class="flex items-center space-x-3">
                 <div class="p-3 rounded-xl" style="background: linear-gradient(135deg, ${config.primary_action} 0%, ${config.secondary_action} 100%);">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                  </svg>
                 </div>
                 <div>
                   <p class="font-semibold mb-1" style="color: ${config.text_color}; opacity: 0.7; font-size: ${baseSize * 0.75}px;">${config.progress_label}</p>
@@ -246,10 +252,14 @@
                 </div>
               </div>
             </div>
+            
             <div class="card-hover p-3 rounded-xl shadow-xl border" style="background-color: ${config.surface_color}; border-color: #10b98130;">
               <div class="flex items-center space-x-3">
                 <div class="p-3 rounded-xl" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
                 </div>
                 <div>
                   <p class="font-semibold mb-1" style="color: ${config.text_color}; opacity: 0.7; font-size: ${baseSize * 0.75}px;">${config.version_label}</p>
@@ -257,10 +267,16 @@
                 </div>
               </div>
             </div>
+            
             <div class="card-hover p-3 rounded-xl shadow-xl border" style="background-color: ${config.surface_color}; border-color: #f59e0b30;">
               <div class="flex items-center space-x-3">
                 <div class="p-3 rounded-xl" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
                 </div>
                 <div>
                   <p class="font-semibold mb-1" style="color: ${config.text_color}; opacity: 0.7; font-size: ${baseSize * 0.75}px;">${config.deadline_label}</p>
@@ -268,10 +284,14 @@
                 </div>
               </div>
             </div>
+            
             <div class="card-hover p-3 rounded-xl shadow-xl border" style="background-color: ${config.surface_color}; border-color: #10b98130;">
               <div class="flex items-center space-x-3">
                 <div class="p-3 rounded-xl" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
                 </div>
                 <div>
                   <p class="font-semibold mb-1" style="color: ${config.text_color}; opacity: 0.7; font-size: ${baseSize * 0.8}px;">Status</p>
@@ -373,6 +393,19 @@
               ${projectData.mainTasks.map((task, index) => {
                 const isDone = task.status === 'DONE';
                 const statusColor = isDone ? '#10b981' : '#f59e0b';
+                const statusBg = isDone ? '#10b98130' : '#f59e0b30';
+                const statusIcon = isDone ? `
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="${statusColor}" stroke-width="2.5">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                ` : `
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="${statusColor}" stroke-width="2.5">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                `;
+                
                 return `
                   <div class="flex items-center justify-between p-5 rounded-xl border-2 card-hover" style="background-color: ${config.background_color}; border-color: ${groupColors[task.group].color}40;">
                     <div class="flex items-center space-x-5 flex-1">
@@ -385,7 +418,12 @@
                         </div>
                       </div>
                     </div>
-                    <span class="status-badge px-4 py-2 rounded-xl font-bold flex items-center space-x-2 shadow-lg" style="background-color: ${statusColor}30; color: ${statusColor}; font-size: ${baseSize * 0.85}px;">${task.status}</span>
+                    <div class="flex items-center space-x-3">
+                      <span class="status-badge px-4 py-2 rounded-xl font-bold flex items-center space-x-2 shadow-lg" style="background-color: ${statusBg}; color: ${statusColor}; font-size: ${baseSize * 0.85}px;">
+                        ${statusIcon}
+                        <span>${task.status}</span>
+                      </span>
+                    </div>
                   </div>
                 `;
               }).join('')}
@@ -425,7 +463,10 @@
                   <div class="space-y-3 ml-6">
                     ${category.items.map(item => `
                       <div class="flex items-start space-x-4 p-4 rounded-xl card-hover" style="background-color: ${config.background_color}; border-left: 4px solid ${categoryColors[idx].color};">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="${categoryColors[idx].color}" stroke-width="2.5" class="flex-shrink-0 mt-1"><polyline points="9 11 12 14 22 4"></polyline></svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="${categoryColors[idx].color}" stroke-width="2.5" class="flex-shrink-0 mt-1">
+                          <polyline points="9 11 12 14 22 4"></polyline>
+                          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                        </svg>
                         <p class="font-medium" style="color: ${config.text_color}; font-size: ${baseSize * 0.95}px; line-height: 1.6;">${item}</p>
                       </div>
                     `).join('')}
@@ -453,22 +494,46 @@
             </h2>
             <div class="space-y-5">
               ${projectData.issues.map(issue => {
-                let severityColor, severityBg;
+                let severityColor, severityBg, icon;
+                
                 if (issue.severity === 'High') {
                   severityColor = '#ef4444';
                   severityBg = '#ef444420';
+                  icon = `
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="${severityColor}" stroke-width="2.5">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="12" y1="8" x2="12" y2="12"></line>
+                      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                  `;
                 } else if (issue.severity === 'Medium') {
                   severityColor = '#f59e0b';
                   severityBg = '#f59e0b20';
+                  icon = `
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="${severityColor}" stroke-width="2.5">
+                      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                      <line x1="12" y1="9" x2="12" y2="13"></line>
+                      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                  `;
                 } else {
                   severityColor = '#10b981';
                   severityBg = '#10b98130';
+                  icon = `
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="${severityColor}" stroke-width="2.5">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                  `;
                 }
+                
                 return `
                   <div class="p-6 rounded-2xl border-2 card-hover" style="background-color: ${config.background_color}; border-color: ${severityColor};">
                     <div class="flex items-start justify-between mb-4">
                       <div class="flex items-start space-x-4 flex-1">
-                        <div class="p-3 rounded-xl" style="background-color: ${severityBg};"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="${severityColor}" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></div>
+                        <div class="p-3 rounded-xl" style="background-color: ${severityBg};">
+                          ${icon}
+                        </div>
                         <div class="flex-1">
                           <h3 class="font-bold mb-3" style="color: ${config.text_color}; font-size: ${baseSize * 1.15}px;">${issue.title}</h3>
                           <p class="leading-relaxed" style="color: ${config.text_color}; opacity: 0.8; font-size: ${baseSize * 0.95}px; line-height: 1.7;">${issue.desc}</p>
@@ -485,9 +550,89 @@
       `;
     }
 
+    async function onConfigChange(config) {
+      renderApp(config);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => {
+                config.surface_color = value;
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => {
+                config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => config.primary_action || defaultConfig.primary_action,
+              set: (value) => {
+                config.primary_action = value;
+                window.elementSdk.setConfig({ primary_action: value });
+              }
+            },
+            {
+              get: () => config.secondary_action || defaultConfig.secondary_action,
+              set: (value) => {
+                config.secondary_action = value;
+                window.elementSdk.setConfig({ secondary_action: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => {
+              config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => {
+              config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["project_name", config.project_name || defaultConfig.project_name],
+          ["project_id", config.project_id || defaultConfig.project_id],
+          ["version", config.version || defaultConfig.version],
+          ["release_date", config.release_date || defaultConfig.release_date],
+          ["iteration_goal", config.iteration_goal || defaultConfig.iteration_goal],
+          ["progress_label", config.progress_label || defaultConfig.progress_label],
+          ["version_label", config.version_label || defaultConfig.version_label],
+          ["deadline_label", config.deadline_label || defaultConfig.deadline_label],
+          ["issues_label", config.issues_label || defaultConfig.issues_label]
+        ])
+      });
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
-      renderApp(defaultConfig);
+      if (window.elementSdk && window.elementSdk.config) {
+        renderApp(window.elementSdk.config);
+      } else {
+        renderApp(defaultConfig);
+      }
     });
   </script>
- </body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c5e132ef2f7b44b',t:'MTc2OTc0NTc1OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
