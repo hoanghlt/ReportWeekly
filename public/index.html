@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="vi">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Dashboards</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .card {
+      animation: fadeIn 0.6s ease-out;
+    }
+    
+    .card:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    }
+  </style>
+ </head>
+ <body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen">
+  <div class="container mx-auto px-4 py-16">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h1 class="text-5xl md:text-6xl font-bold text-white mb-4">📊 Project Dashboards</h1>
+      <p class="text-xl text-slate-400">Weekly Project Status & Progress Tracking</p>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
+      <!-- OmniSell Card -->
+      <a href="/OmniSell/" class="card card-hover group">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-xl">
+          <!-- Header Gradient -->
+          <div class="bg-gradient-to-r from-amber-400 to-orange-500 p-8">
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="text-3xl font-bold text-white mb-2">OmniSell</h2>
+                <p class="text-white text-opacity-90">Version 2.2</p>
+              </div>
+              <div class="text-6xl">🎯</div>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="p-8">
+            <div class="mb-6">
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-semibold text-slate-600">Progress</span>
+                <span class="text-lg font-bold text-amber-500">17%</span>
+              </div>
+              <div class="w-full bg-slate-200 rounded-full h-2">
+                <div class="bg-gradient-to-r from-amber-400 to-orange-500 h-2 rounded-full" style="width: 17%"></div>
+              </div>
+            </div>
+
+            <div class="space-y-3 mb-6">
+              <div class="flex items-center text-slate-700">
+                <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <span>6 Tasks</span>
+              </div>
+              <div class="flex items-center text-slate-700">
+                <svg class="w-5 h-5 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20"><path d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.3A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z"/></svg>
+                <span>Release: 31/03/2026</span>
+              </div>
+              <div class="flex items-center text-slate-700">
+                <svg class="w-5 h-5 mr-2 text-orange-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zm-11-1a1 1 0 11-2 0 1 1 0 012 0z" clip-rule="evenodd"/></svg>
+                <span>Team: Backend, API, DB</span>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-slate-200">
+              <div class="flex items-center text-amber-600 font-semibold group-hover:text-amber-700">
+                View Dashboard →
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- WSale Card -->
+      <a href="/WSale/" class="card card-hover group">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-xl">
+          <!-- Header Gradient -->
+          <div class="bg-gradient-to-r from-indigo-500 to-purple-600 p-8">
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="text-3xl font-bold text-white mb-2">WSale</h2>
+                <p class="text-white text-opacity-90">Version 1.5</p>
+              </div>
+              <div class="text-6xl">💼</div>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="p-8">
+            <div class="mb-6">
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-semibold text-slate-600">Progress</span>
+                <span class="text-lg font-bold text-indigo-600">38%</span>
+              </div>
+              <div class="w-full bg-slate-200 rounded-full h-2">
+                <div class="bg-gradient-to-r from-indigo-500 to-purple-600 h-2 rounded-full" style="width: 38%"></div>
+              </div>
+            </div>
+
+            <div class="space-y-3 mb-6">
+              <div class="flex items-center text-slate-700">
+                <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <span>5 Tasks</span>
+              </div>
+              <div class="flex items-center text-slate-700">
+                <svg class="w-5 h-5 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20"><path d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.3A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z"/></svg>
+                <span>Release: 31/03/2026</span>
+              </div>
+              <div class="flex items-center text-slate-700">
+                <svg class="w-5 h-5 mr-2 text-purple-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zm-11-1a1 1 0 11-2 0 1 1 0 012 0z" clip-rule="evenodd"/></svg>
+                <span>Team: Infra, K8s, Mobile</span>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-slate-200">
+              <div class="flex items-center text-indigo-600 font-semibold group-hover:text-indigo-700">
+                View Dashboard →
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Footer Info -->
+    <div class="max-w-4xl mx-auto text-center text-slate-400 text-sm">
+      <p>📅 Last Updated: January 30, 2026</p>
+      <p class="mt-2">Deployable to Netlify • Responsive Design • Real-time Status</p>
+    </div>
+  </div>
+ </body>
+</html>

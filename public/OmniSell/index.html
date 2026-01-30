@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="vi">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OmniSell Project Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .animate-in {
+      animation: fadeIn 0.5s ease-out;
+    }
+    
+    .slide-in {
+      animation: slideIn 0.4s ease-out;
+    }
+    
+    .progress-bar {
+      transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .status-badge {
+      transition: all 0.2s ease;
+    }
+    
+    .tab-button {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .tab-button:hover {
+      transform: translateY(-2px);
+    }
+    
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.15);
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    }
+    
+    .group-badge {
+      transition: all 0.2s ease;
+    }
+    
+    .group-badge:hover {
+      transform: scale(1.05);
+    }
+  </style>
+ </head>
+ <body class="bg-gray-50 min-h-screen">
+  <div id="app" class="w-full h-full overflow-auto"></div>
+  <script>
+    const defaultConfig = {
+      background_color: "#ffffff",
+      surface_color: "#f8fafc",
+      text_color: "#1e293b",
+      primary_action: "#f59e0b",
+      secondary_action: "#d97706",
+      project_name: "OmniSell Project",
+      project_id: "OSL",
+      version: "2.2",
+      release_date: "31/03/2026",
+      iteration_goal: "Refactor cụm BE, tổ chức lại bộ KQTV chung giữa các kênh, cung cấp API KHTN cho FoxOne, auto tạo KHTN kênh Social, chuẩn hóa event schema & logging.",
+      progress_label: "Tiến độ tổng thể",
+      version_label: "Version",
+      deadline_label: "Ngày Release",
+      issues_label: "Vấn đề",
+      font_family: "Space Grotesk",
+      font_size: 16
+    };
+
+    let activeTab = 'dashboard';
+    
+    const projectData = {
+      overallProgress: 17,
+      totalTasks: 6,
+      doneTasks: 1,
+      mainTasks: [
+        { title: "Nhận KHTN VIP 7 DKOL - GTEL PAY(BCA)", status: "DONE", progress: "100%", group: "Backend" },
+        { title: "Tổ chức lại bộ KQTV chung giữa các kênh SOP-WSale-OmniSell", status: "IN PROGRESS", progress: "0%", group: "Backend" },
+        { title: "Cung cấp API KHTN cho FoxOne", status: "IN PROGRESS", progress: "10%", group: "API" },
+        { title: "Tiếp nhận KHTN từ SR ghi nhận vào SR nonSHD (KHTN)", status: "IN PROGRESS", progress: "0%", group: "Database" },
+        { title: "Thay đổi thông tin địa chỉ HCQG", status: "IN PROGRESS", progress: "0%", group: "Database" },
+        { title: "Refactor cụm BE (nghiệp vụ & kiến trúc)", status: "PENDING", progress: "Pending", group: "Infrastructure" }
+      ],
+      nextTwoWeeks: [
+        { category: "Tuần 1 (30/1 - 5/2)", items: ["Tổ chức lại bộ KQTV chung: Phân tích yêu cầu, thiết kế database", "Định nghĩa cấu trúc dữ liệu KQTV cho các kênh SOP-WSale-OmniSell", "Chuẩn bị phương án integration giữa các kênh"] },
+        { category: "Tuần 2 (6/2 - 13/2)", items: ["Tổ chức lại bộ KQTV chung: Tiếp tục phát triển logic xử lý", "Chuẩn bị kế hoạch chi tiết cho API KHTN FoxOne (deadline 4/3)", "Review & test các thay đổi KQTV"] }
+      ],
+      issues: [
+        { title: "Resource dev chưa đáp ứng đủ với số lượng task hiện tại", desc: "Đội ngũ phát triển hiện tại chưa đủ nguồn lực để xử lý song song các task Backend, Integration, Database và Refactor BE. Cần bổ sung thêm developer hoặc điều chỉnh ưu tiên.", severity: "Medium", icon: "alert" },
+        { title: "Chưa được hỗ trợ tích hợp từ một số service external", desc: "Việc tích hợp từ một số service external (FoxOne, SR system) chưa được hỗ trợ đầy đủ, ảnh hưởng đến khả năng đồng bộ dữ liệu. Cần liên hệ các team liên quan để có roadmap rõ ràng.", severity: "High", icon: "alert" }
+      ]
+    };
+
+    const groupColors = {
+      "Backend": { bg: "#3b82f620", color: "#3b82f6" },
+      "API": { bg: "#ec489920", color: "#ec4899" },
+      "Database": { bg: "#8b5cf620", color: "#8b5cf6" },
+      "Infrastructure": { bg: "#6366f120", color: "#6366f1" },
+      "Marketing": { bg: "#10b98120", color: "#10b981" },
+      "Features": { bg: "#f59e0b20", color: "#f59e0b" },
+      "Development": { bg: "#ec489920", color: "#ec4899" }
+    };
+
+    function renderApp(config) {
+      const app = document.getElementById('app');
+      const baseSize = config.font_size || defaultConfig.font_size;
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const baseFontStack = 'system-ui, -apple-system, sans-serif';
+      
+      app.innerHTML = `
+        <div class="w-full h-full p-6" style="background: linear-gradient(135deg, ${config.background_color} 0%, ${config.surface_color} 100%); font-family: ${fontFamily}, ${baseFontStack}; height: 100%;">
+          <!-- Header with Gradient -->
+          <div class="mb-4 animate-in">
+            <div class="p-4 rounded-2xl gradient-bg shadow-2xl">
+              <div class="flex items-center justify-between mb-2">
+                <h1 class="font-bold text-white" style="font-size: ${baseSize * 2}px;">${config.project_name}</h1>
+                <div class="flex items-center space-x-3">
+                  <span class="px-3 py-1 rounded-full text-sm font-bold bg-white bg-opacity-25 text-white backdrop-blur-sm" style="font-size: ${baseSize * 0.85}px;">v${config.version}</span>
+                </div>
+              </div>
+              <p class="text-white text-opacity-90" style="font-size: ${baseSize * 0.9}px;">${config.release_date}</p>
+            </div>
+          </div>
+
+          <!-- Navigation Tabs -->
+          <div class="flex space-x-2 mb-4 p-2 rounded-2xl" style="background-color: ${config.surface_color};">
+            <button id="tab-dashboard" class="tab-button px-4 py-2 rounded-xl font-bold flex items-center space-x-2" style="font-size: ${baseSize * 0.85}px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+              <span>Dashboard</span>
+            </button>
+            <button id="tab-tasks" class="tab-button px-4 py-2 rounded-xl font-bold flex items-center space-x-2" style="font-size: ${baseSize * 0.85}px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+              <span>Tasks</span>
+            </button>
+            <button id="tab-roadmap" class="tab-button px-4 py-2 rounded-xl font-bold flex items-center space-x-2" style="font-size: ${baseSize * 0.85}px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>Next Plan</span>
+            </button>
+            <button id="tab-issues" class="tab-button px-4 py-2 rounded-xl font-bold flex items-center space-x-2" style="font-size: ${baseSize * 0.85}px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <span>Issues</span>
+            </button>
+          </div>
+
+          <!-- Content Area -->
+          <div id="content-area"></div>
+        </div>
+      `;
+
+      updateTabStyles(config);
+      renderContent(config);
+      
+      document.getElementById('tab-dashboard').addEventListener('click', () => switchTab('dashboard', config));
+      document.getElementById('tab-tasks').addEventListener('click', () => switchTab('tasks', config));
+      document.getElementById('tab-roadmap').addEventListener('click', () => switchTab('roadmap', config));
+      document.getElementById('tab-issues').addEventListener('click', () => switchTab('issues', config));
+    }
+
+    function switchTab(tab, config) {
+      activeTab = tab;
+      updateTabStyles(config);
+      renderContent(config);
+    }
+
+    function updateTabStyles(config) {
+      const tabs = ['dashboard', 'tasks', 'roadmap', 'issues'];
+      tabs.forEach(tab => {
+        const button = document.getElementById(`tab-${tab}`);
+        if (button) {
+          if (tab === activeTab) {
+            button.style.backgroundColor = config.primary_action;
+            button.style.color = '#ffffff';
+          } else {
+            button.style.backgroundColor = 'transparent';
+            button.style.color = config.text_color;
+            button.style.opacity = '0.6';
+          }
+        }
+      });
+    }
+
+    function renderContent(config) {
+      const contentArea = document.getElementById('content-area');
+      
+      if (activeTab === 'dashboard') {
+        contentArea.innerHTML = renderDashboard(config);
+      } else if (activeTab === 'tasks') {
+        contentArea.innerHTML = renderTasks(config);
+      } else if (activeTab === 'roadmap') {
+        contentArea.innerHTML = renderRoadmap(config);
+      } else if (activeTab === 'issues') {
+        contentArea.innerHTML = renderIssues(config);
+      }
+    }
+
+    function renderDashboard(config) {
+      const baseSize = config.font_size || defaultConfig.font_size;
+      return `
+        <div class="space-y-4 animate-in">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+            <div class="card-hover p-3 rounded-xl shadow-xl border" style="background-color: ${config.surface_color}; border-color: ${config.primary_action}30;">
+              <div class="flex items-center space-x-3">
+                <div class="p-3 rounded-xl" style="background: linear-gradient(135deg, ${config.primary_action} 0%, ${config.secondary_action} 100%);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                </div>
+                <div>
+                  <p class="font-semibold mb-1" style="color: ${config.text_color}; opacity: 0.7; font-size: ${baseSize * 0.75}px;">${config.progress_label}</p>
+                  <p class="font-bold" style="color: ${config.text_color}; font-size: ${baseSize * 1.5}px;">${projectData.overallProgress}%</p>
+                </div>
+              </div>
+            </div>
+            <div class="card-hover p-3 rounded-xl shadow-xl border" style="background-color: ${config.surface_color}; border-color: #10b98130;">
+              <div class="flex items-center space-x-3">
+                <div class="p-3 rounded-xl" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <div>
+                  <p class="font-semibold mb-1" style="color: ${config.text_color}; opacity: 0.7; font-size: ${baseSize * 0.75}px;">${config.version_label}</p>
+                  <p class="font-bold" style="color: ${config.text_color}; font-size: ${baseSize * 1.5}px;">${config.version}</p>
+                </div>
+              </div>
+            </div>
+            <div class="card-hover p-3 rounded-xl shadow-xl border" style="background-color: ${config.surface_color}; border-color: ${config.primary_action}30;">
+              <div class="flex items-center space-x-3">
+                <div class="p-3 rounded-xl" style="background: linear-gradient(135deg, ${config.primary_action} 0%, ${config.secondary_action} 100%);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                </div>
+                <div>
+                  <p class="font-semibold mb-1" style="color: ${config.text_color}; opacity: 0.7; font-size: ${baseSize * 0.75}px;">${config.deadline_label}</p>
+                  <p class="font-bold leading-tight" style="color: ${config.text_color}; font-size: ${baseSize * 0.9}px;">31/03/2026</p>
+                </div>
+              </div>
+            </div>
+            <div class="card-hover p-3 rounded-xl shadow-xl border" style="background-color: ${config.surface_color}; border-color: #10b98130;">
+              <div class="flex items-center space-x-3">
+                <div class="p-3 rounded-xl" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <div>
+                  <p class="font-semibold mb-1" style="color: ${config.text_color}; opacity: 0.7; font-size: ${baseSize * 0.8}px;">Status</p>
+                  <p class="font-bold" style="color: #f59e0b; font-size: ${baseSize * 1.2}px;">On Track</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderTasks(config) {
+      const baseSize = config.font_size || defaultConfig.font_size;
+      return `
+        <div class="space-y-6 animate-in">
+          <div class="card-hover p-8 rounded-2xl shadow-xl" style="background-color: ${config.surface_color};">
+            <h2 class="font-bold mb-8" style="color: ${config.text_color}; font-size: ${baseSize * 1.5}px;">Danh sách nhiệm vụ - Version 2.2</h2>
+            <div class="space-y-4">
+              ${projectData.mainTasks.map((task, index) => {
+                const isDone = task.status === 'DONE';
+                const statusColor = isDone ? '#10b981' : (task.status === 'IN PROGRESS' ? '#f59e0b' : '#6b7280');
+                return `
+                  <div class="flex items-center justify-between p-5 rounded-xl border-2 card-hover" style="background-color: ${config.background_color}; border-color: ${groupColors[task.group].color}40;">
+                    <div class="flex items-center space-x-5 flex-1">
+                      <span class="font-bold text-center rounded-lg px-3 py-2" style="color: ${config.text_color}; background-color: ${config.surface_color}; font-size: ${baseSize * 0.9}px; min-width: 40px;">#${index + 1}</span>
+                      <div class="flex-1">
+                        <p class="font-semibold mb-2" style="color: ${config.text_color}; font-size: ${baseSize * 1.05}px; line-height: 1.5;">${task.title}</p>
+                        <div class="flex items-center space-x-2 mt-2">
+                          <span class="group-badge px-3 py-1 rounded-full text-xs font-bold" style="background-color: ${groupColors[task.group].bg}; color: ${groupColors[task.group].color};">${task.group}</span>
+                          <span class="px-3 py-1 rounded-full text-xs font-bold" style="background-color: ${config.primary_action}20; color: ${config.primary_action};">${task.progress}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <span class="status-badge px-4 py-2 rounded-xl font-bold flex items-center space-x-2 shadow-lg" style="background-color: ${statusColor}30; color: ${statusColor}; font-size: ${baseSize * 0.85}px;">${task.status}</span>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderRoadmap(config) {
+      const baseSize = config.font_size || defaultConfig.font_size;
+      const categoryColors = [
+        { bg: '#f59e0b20', color: '#f59e0b' },
+        { bg: '#3b82f620', color: '#3b82f6' }
+      ];
+      
+      return `
+        <div class="space-y-6 animate-in">
+          <div class="card-hover p-8 rounded-2xl shadow-xl" style="background-color: ${config.surface_color};">
+            <h2 class="font-bold mb-8 flex items-center space-x-3" style="color: ${config.text_color}; font-size: ${baseSize * 1.5}px;">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="${config.primary_action}" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 10"></polyline>
+              </svg>
+              <span>Next Plan</span>
+            </h2>
+            <div class="space-y-8">
+              ${projectData.nextTwoWeeks.map((category, idx) => `
+                <div class="slide-in">
+                  <div class="flex items-center space-x-4 mb-5 p-4 rounded-xl" style="background-color: ${categoryColors[idx].bg};">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="${categoryColors[idx].color}" stroke-width="2.5">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 10"></polyline>
+                    </svg>
+                    <h3 class="font-bold" style="color: ${categoryColors[idx].color}; font-size: ${baseSize * 1.25}px;">${category.category}</h3>
+                  </div>
+                  <div class="space-y-3 ml-6">
+                    ${category.items.map(item => `
+                      <div class="flex items-start space-x-4 p-4 rounded-xl card-hover" style="background-color: ${config.background_color}; border-left: 4px solid ${categoryColors[idx].color};">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="${categoryColors[idx].color}" stroke-width="2.5" class="flex-shrink-0 mt-1"><polyline points="9 11 12 14 22 4"></polyline></svg>
+                        <p class="font-medium" style="color: ${config.text_color}; font-size: ${baseSize * 0.95}px; line-height: 1.6;">${item}</p>
+                      </div>
+                    `).join('')}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderIssues(config) {
+      const baseSize = config.font_size || defaultConfig.font_size;
+      return `
+        <div class="space-y-6 animate-in">
+          <div class="card-hover p-8 rounded-2xl shadow-xl" style="background-color: ${config.surface_color};">
+            <h2 class="font-bold mb-8 flex items-center space-x-3" style="color: ${config.text_color}; font-size: ${baseSize * 1.5}px;">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="${config.primary_action}" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <span>${config.issues_label || defaultConfig.issues_label}</span>
+            </h2>
+            <div class="space-y-5">
+              ${projectData.issues.map(issue => {
+                let severityColor, severityBg;
+                if (issue.severity === 'High') {
+                  severityColor = '#ef4444';
+                  severityBg = '#ef444420';
+                } else if (issue.severity === 'Medium') {
+                  severityColor = '#f59e0b';
+                  severityBg = '#f59e0b20';
+                } else {
+                  severityColor = '#10b981';
+                  severityBg = '#10b98130';
+                }
+                return `
+                  <div class="p-6 rounded-2xl border-2 card-hover" style="background-color: ${config.background_color}; border-color: ${severityColor};">
+                    <div class="flex items-start justify-between mb-4">
+                      <div class="flex items-start space-x-4 flex-1">
+                        <div class="p-3 rounded-xl" style="background-color: ${severityBg};"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="${severityColor}" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></div>
+                        <div class="flex-1">
+                          <h3 class="font-bold mb-3" style="color: ${config.text_color}; font-size: ${baseSize * 1.15}px;">${issue.title}</h3>
+                          <p class="leading-relaxed" style="color: ${config.text_color}; opacity: 0.8; font-size: ${baseSize * 0.95}px; line-height: 1.7;">${issue.desc}</p>
+                        </div>
+                      </div>
+                      <span class="px-4 py-2 rounded-xl font-bold ml-4 shadow-lg flex-shrink-0" style="background-color: ${severityBg}; color: ${severityColor}; font-size: ${baseSize * 0.85}px;">${issue.severity}</span>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderApp(defaultConfig);
+    });
+  </script>
+ </body>
+</html>
