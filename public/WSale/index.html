@@ -80,7 +80,7 @@
       project_name: "WSale Project",
       project_id: "WSL",
       version: "1.5",
-      release_date: "31/03/2026",
+      release_date: "29/04/2026",
       iteration_goal: "Nâng cấp hạ tầng K8s cụm API TLS Inside, hoàn thiện các tính năng LDP V.VIP (MKT/Map), bổ sung logic Autocall và phát triển bản Mobile SOP.",
       progress_label: "Tiến độ tổng thể",
       version_label: "Version",
@@ -93,19 +93,27 @@
     let activeTab = 'dashboard';
     
     const projectData = {
-      overallProgress: 38,
-      totalTasks: 5,
+      overallProgress: 47,
+      totalTasks: 6,
       doneTasks: 1,
       mainTasks: [
-        { title: "Nâng cấp hạ tầng K8s cụm API TLS Inside (1/1-30/1)", status: "IN PROGRESS", progress: "90%", group: "Infrastructure" },
+        { title: "Nâng cấp hạ tầng K8s cụm API TLS Inside (1/1-30/1)", status: "IN PROGRESS", progress: "95%", group: "Infrastructure" },
         { title: "LDP V.VIP MKT: Bổ sung nhận diện tập data từ FMI (5/1-9/1)", status: "DONE", progress: "100%", group: "Marketing" },
-        { title: "LDP V.VIP Map: Tra cứu hạ tầng Wifi 7 & TTKD/VPGD (12/2-23/2)", status: "PENDING", progress: "0%", group: "Features" },
-        { title: "Autocall: Check blacklist, check trùng SĐT chính chủ (2/2-11/2)", status: "IN PROGRESS", progress: "10%", group: "Automation" },
-        { title: "WSale bản Mobile SOP (24/2-31/3)", status: "PENDING", progress: "0%", group: "Development" }
+        { title: "LDP V.VIP Map: Tra cứu hạ tầng Wifi 7 & TTKD/VPGD (12/2, 13/2 → Tết → 17/3-24/3)", status: "PENDING", progress: "0%", group: "Features" },
+        { title: "Autocall: Check blacklist, check trùng SĐT chính chủ (02/2-11/2)", status: "IN PROGRESS", progress: "70%", group: "Automation" },
+        { title: "Nâng cấp Camera (5/2-11/2)", status: "IN PROGRESS", progress: "15%", group: "Features" },
+        { title: "WSale bản Mobile SOP (25/3-29/4)", status: "IN PROGRESS", progress: "0%", group: "Development" }
       ],
       nextTwoWeeks: [
-        { category: "Tuần 1 (1/2 - 7/2)", items: ["Autocall: Bắt đầu phân tích yêu cầu check giỏ blacklist", "Nâng cấp K8s: Hoàn thành tuning cuối cùng"] },
-        { category: "Tuần 2 (8/2 - 14/2)", items: ["Autocall: Tiếp tục phát triển check trùng SDT", "LDP V.VIP Map: Bắt đầu phân tích và thiết kế"] }
+        { category: "Tuần 1 (1/2 - 7/2)", items: [
+            "Nâng cấp Camera: Triển khai LDP Nâng cấp Camera (5/2 - 11/2)",
+            "- Điều chỉnh banner và luồng xử lý search hợp đồng (UI/UX)",
+            "- Thiết kế và triển khai màn hình xác nhận cho Nâng cấp Camera",
+            "- Tích hợp API nâng cấp camera lấy gói bán dịch vụ, lấy thông tin đơn hàng, thông tin thanh toán, ...",
+            "Nâng cấp K8s: Hoàn thành tuning cuối cùng",
+            "Autocall: Bổ sung thêm blacklist bằng số ĐT, điều chỉnh luồng check trùng SDT (02/2 - 11/2)"
+          ] },
+        { category: "Tuần 2 (8/2 - 14/2)", items: ["Autocall: Tiếp tục phát triển check trùng SDT (02/2 - 11/2)", "LDP V.VIP Map: Bắt đầu phân tích và thiết kế (trước kỳ Tết)"] }
       ],
       issues: [
         { title: "Resource dev chưa đáp ứng đủ với số lượng task hiện tại", desc: "Đội ngũ phát triển hiện tại chưa đủ nguồn lực để xử lý song song các task Infrastructure, LDP V.VIP, Autocall và Mobile SOP. Cần bổ sung thêm developer hoặc điều chỉnh ưu tiên.", severity: "Medium", icon: "alert" },
@@ -264,7 +272,7 @@
                 </div>
                 <div>
                   <p class="font-semibold mb-1" style="color: ${config.text_color}; opacity: 0.7; font-size: ${baseSize * 0.75}px;">${config.deadline_label}</p>
-                  <p class="font-bold leading-tight" style="color: ${config.text_color}; font-size: ${baseSize * 0.9}px;">31/03/2026</p>
+                  <p class="font-bold leading-tight" style="color: ${config.text_color}; font-size: ${baseSize * 0.9}px;">${config.release_date}</p>
                 </div>
               </div>
             </div>
@@ -328,7 +336,10 @@
                     </svg>
                     <div class="flex-1">
                       <p class="font-medium mb-1" style="color: ${config.text_color}; font-size: ${baseSize * 0.85}px; line-height: 1.4;">${task.title}</p>
-                      <span class="group-badge px-2 py-1 rounded-full text-xs font-bold" style="background-color: ${groupColors[task.group].bg}; color: ${groupColors[task.group].color}; font-size: ${baseSize * 0.65}px;">${task.group}</span>
+                      <div class="flex items-center space-x-2 mt-2">
+                        <span class="group-badge px-2 py-1 rounded-full text-xs font-bold" style="background-color: ${groupColors[task.group].bg}; color: ${groupColors[task.group].color}; font-size: ${baseSize * 0.65}px;">${task.group}</span>
+                        <span class="px-2 py-1 rounded-full text-xs font-bold" style="background-color: ${config.primary_action}20; color: ${config.primary_action};">${task.progress}</span>
+                      </div>
                     </div>
                   </div>
                 `).join('')}
@@ -352,7 +363,10 @@
                     </svg>
                     <div class="flex-1">
                       <p class="font-medium mb-1" style="color: ${config.text_color}; font-size: ${baseSize * 0.85}px; line-height: 1.4;">${task.title}</p>
-                      <span class="group-badge px-2 py-1 rounded-full text-xs font-bold" style="background-color: ${groupColors[task.group].bg}; color: ${groupColors[task.group].color}; font-size: ${baseSize * 0.65}px;">${task.group}</span>
+                      <div class="flex items-center space-x-2 mt-2">
+                        <span class="group-badge px-2 py-1 rounded-full text-xs font-bold" style="background-color: ${groupColors[task.group].bg}; color: ${groupColors[task.group].color}; font-size: ${baseSize * 0.65}px;">${task.group}</span>
+                        <span class="px-2 py-1 rounded-full text-xs font-bold" style="background-color: ${config.primary_action}20; color: ${config.primary_action};">${task.progress}</span>
+                      </div>
                     </div>
                   </div>
                 `).join('')}
