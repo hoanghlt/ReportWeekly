@@ -81,7 +81,7 @@
       project_id: "WSL",
       version: "1.5",
       release_date: "29/04/2026",
-      iteration_goal: "Nâng cấp hạ tầng K8s cụm API TLS Inside, hoàn thiện các tính năng LDP V.VIP (MKT/Map), bổ sung logic Autocall và phát triển bản Mobile SOP.",
+      iteration_goal: "Nâng cấp hạ tầng K8s, hoàn thành LDP V.VIP MKT & Camera, tiến hành phân tích LDP V.VIP Map, tiếp tục phát triển Autocall (blacklist/check trùng) và chuẩn bị Mobile SOP.",
       progress_label: "Tiến độ tổng thể",
       version_label: "Version",
       deadline_label: "Ngày Release",
@@ -93,27 +93,25 @@
     let activeTab = 'dashboard';
     
     const projectData = {
-      overallProgress: 47,
+      overallProgress: 33,
       totalTasks: 6,
-      doneTasks: 1,
+      doneTasks: 2,
       mainTasks: [
         { title: "Nâng cấp hạ tầng K8s cụm API TLS Inside (1/1-30/1)", status: "IN PROGRESS", progress: "95%", group: "Infrastructure" },
         { title: "LDP V.VIP MKT: Bổ sung nhận diện tập data từ FMI (5/1-9/1)", status: "DONE", progress: "100%", group: "Marketing" },
         { title: "LDP V.VIP Map: Tra cứu hạ tầng Wifi 7 & TTKD/VPGD (12/2, 13/2 → Tết → 17/3-24/3)", status: "PENDING", progress: "0%", group: "Features" },
-        { title: "Autocall: Check blacklist, check trùng SĐT chính chủ (02/2-11/2)", status: "IN PROGRESS", progress: "70%", group: "Automation" },
-        { title: "Nâng cấp Camera (5/2-11/2)", status: "IN PROGRESS", progress: "15%", group: "Features" },
+        { title: "Autocall: Check blacklist, check trùng SĐT chính chủ (02/2-06/03)", status: "IN PROGRESS", progress: "70%", group: "Automation" },
+        { title: "Nâng cấp Camera (5/2-11/2)", status: "DONE", progress: "100%", group: "Features" },
         { title: "WSale bản Mobile SOP (25/3-29/4)", status: "IN PROGRESS", progress: "0%", group: "Development" }
       ],
       nextTwoWeeks: [
-        { category: "Tuần 1 (1/2 - 7/2)", items: [
-            "Nâng cấp Camera: Triển khai LDP Nâng cấp Camera (5/2 - 11/2)",
-            "- Điều chỉnh banner và luồng xử lý search hợp đồng (UI/UX)",
-            "- Thiết kế và triển khai màn hình xác nhận cho Nâng cấp Camera",
-            "- Tích hợp API nâng cấp camera lấy gói bán dịch vụ, lấy thông tin đơn hàng, thông tin thanh toán, ...",
-            "Nâng cấp K8s: Hoàn thành tuning cuối cùng",
-            "Autocall: Bổ sung thêm blacklist bằng số ĐT, điều chỉnh luồng check trùng SDT (02/2 - 11/2)"
+        { category: "Tuần 1 (23/2 - 27/2)", items: [
+            "Autocall: Test phần blacklist và check trùng autocall, phân tích yêu cầu bổ sung thêm rule (23/2 - 27/2)",
+            "Bổ sung rule Swap Wifi 7 (25/2 - 26/2)"
           ] },
-        { category: "Tuần 2 (8/2 - 14/2)", items: ["Autocall: Tiếp tục phát triển check trùng SDT (02/2 - 11/2)", "LDP V.VIP Map: Bắt đầu phân tích và thiết kế (trước kỳ Tết)"] }
+        { category: "Tuần 2 (2/3 - 6/3)", items: [
+            "Autocall: Xử lý code bổ sung thêm rule check trùng, check giữa 2 kênh dialo và inside (02/3 - 06/3)"
+          ] }
       ],
       issues: [
         { title: "Resource dev chưa đáp ứng đủ với số lượng task hiện tại", desc: "Đội ngũ phát triển hiện tại chưa đủ nguồn lực để xử lý song song các task Infrastructure, LDP V.VIP, Autocall và Mobile SOP. Cần bổ sung thêm developer hoặc điều chỉnh ưu tiên.", severity: "Medium", icon: "alert" },

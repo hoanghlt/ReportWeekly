@@ -13,22 +13,18 @@ WSale
 - Nâng cấp hạ tầng K8s cụm API TLS Inside (1/1-30/1): 95% [IN PROGRESS] - Infrastructure
 - LDP V.VIP MKT (5/1-9/1): 100% [DONE] - Marketing
 - LDP V.VIP Map (12/2, 13/2 → Tết → 17/3-24/3): 0% [PENDING] - Features
-- Autocall (02/2-11/2): 70% [IN PROGRESS] - Automation
-- Nâng cấp Camera (5/2-11/2): 15% [IN PROGRESS] - Features
+- Autocall (02/2-06/03): 70% [IN PROGRESS] - Automation
+- Nâng cấp Camera (5/2-11/2): 100% [DONE] - Features
 - WSale bản Mobile SOP (25/3-29/4): 0% [IN PROGRESS] - Development
 5. Việc đã hoàn thành 
 - LDP V.VIP MKT (5/1-9/1): 100% [DONE] - Marketing
-6. Công việc 2 tuần tiếp (1/2 - 14/2)
- - Tuần 1 (1/2 - 7/2):
-   - Nâng cấp Camera: Triển khai LDP Nâng cấp Camera (4/2 - 9/2)
-     - Điều chỉnh banner và luồng xử lý search hợp đồng (UI/UX)
-     - Thiết kế và triển khai màn hình xác nhận cho Nâng cấp Camera
-     - Tích hợp API nâng cấp camera lấy gói bán dịch vụ, lấy thông tin đơn hàng, thông tin thanh toán, ...
-   - Nâng cấp K8s: Hoàn thành tuning cuối cùng
-   - Autocall: Bổ sung thêm blacklist bằng số ĐT, điều chỉnh luồng check trùng SDT (02/2 - 11/2)
- - Tuần 2 (8/2 - 14/2):
-   - Autocall: Tiếp tục phát triển check trùng SDT (02/2 - 11/2)
-   - LDP V.VIP Map: Bắt đầu phân tích và thiết kế (trước kỳ Tết)
+- Nâng cấp Camera (5/2-11/2): 100% [DONE] - Features
+6. Công việc 2 tuần tiếp (23/2 - 06/3)
+ - Tuần 1 (23/2 - 27/2):
+   - Autocall: Test phần blacklist và check trùng autocall, phân tích yêu cầu bổ sung thêm rule (23/2 - 27/2)
+   - Bổ sung rule Swap Wifi 7 (25/2 - 26/2)
+ - Tuần 2 (2/3 - 6/3):
+   - Autocall: Xử lý code bổ sung thêm rule check trùng, check giữa 2 kênh dialo và inside (02/3 - 06/3)
 7. Vấn đề
 - Resource dev chưa đáp ứng đủ với số lượng task hiện tại
 - Chưa được hỗ trợ tích hợp Order Service từ SPF

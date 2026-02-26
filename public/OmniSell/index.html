@@ -84,7 +84,7 @@
       project_id: "OSL",
       version: "2.2",
       release_date: "31/03/2026",
-      iteration_goal: "Refactor cụm BE, tổ chức lại bộ KQTV chung giữa các kênh, cung cấp API KHTN cho FoxOne, auto tạo KHTN kênh Social, chuẩn hóa event schema & logging.",
+      iteration_goal: "Refactor cụm BE, tổ chức lại bộ KQTV chung, bổ sung check trùng đơn hàng Online, cung cấp API KHTN cho FoxOne, viết API báo cáo data phân phối cho SOP, auto tạo KHTN kênh Social, chuẩn hóa event schema & logging.",
       progress_label: "Tiến độ tổng thể",
       version_label: "Version",
       deadline_label: "Ngày Release",
@@ -96,12 +96,13 @@
     let activeTab = 'dashboard';
     
     const projectData = {
-      overallProgress: 14,
+      overallProgress: 15,
       totalTasks: 13,
-      doneTasks: 1,
+      doneTasks: 2,
       mainTasks: [
         { title: "Nhận KHTN VIP 7 DKOL - GTEL PAY(BCA) (26/1-28/1)", status: "DONE", progress: "100%", group: "Backend" },
-        { title: "Tổ chức lại bộ KQTV chung giữa các kênh SOP-WSale-OmniSell (29/1-11/2)", status: "IN PROGRESS", progress: "70%", group: "Backend" },
+        { title: "Bổ sung check trùng đơn hàng Online (24/2-27/2)", status: "IN PROGRESS", progress: "60%", group: "Backend" },
+        { title: "Tổ chức lại bộ KQTV chung giữa các kênh SOP-WSale-OmniSell (29/1-11/2)", status: "DONE", progress: "100%", group: "Backend" },
         { title: "Bổ sung API báo cáo data phân phối cho SOP và thêm TrackingId nhận biết chiến dịch (12/2-13/2)", status: "IN PROGRESS", progress: "0%", group: "Backend" },
         { title: "Cung cấp API KHTN cho FoxOne (23/2-4/3)", status: "IN PROGRESS", progress: "10%", group: "API" },
         { title: "Tiếp nhận KHTN từ SR ghi nhận vào SR nonSHD (KHTN) (4/3-17/3)", status: "IN PROGRESS", progress: "0%", group: "Database" },
@@ -111,16 +112,14 @@
         { title: "Custom lại phần lưu các utm cho MKT", status: "PENDING", progress: "0%", group: "Marketing" },
         { title: "Chuẩn hóa event schema & logging", status: "PENDING", progress: "0%", group: "Backend" },
         { title: "Auto tạo KHTN kênh Social: Zalo Mini app, Facebook", status: "PENDING", progress: "0%", group: "Integration" },
-        { title: "Bổ sung check trùng Đơn hàng Online", status: "PENDING", progress: "0%", group: "Backend" },
         { title: "Bổ sung check trùng Checklist tư vấn Telesales", status: "PENDING", progress: "0%", group: "Backend" }
       ],
       nextTwoWeeks: [
-        { category: "Tuần 1 (1/2 - 7/2)", items: ["Tổ chức lại bộ KQTV chung: Phân tích yêu cầu, thiết kế database, chuẩn hóa schema", "Định nghĩa cấu trúc dữ liệu KQTV cho các kênh SOP-WSale-OmniSell", "Chuẩn bị phương án integration giữa các kênh", "Hỗ trợ bổ sung luồng xử lý phân phối cho FMI"] },
-        { category: "Tuần 2 (8/2 - 14/2)", items: ["Bổ sung ghi nhận TrackingID đơn hàng từ SOP, Bóng chat", "Viết API báo cáo data phân phối cho SOP", "Tổ chức lại bộ KQTV chung: Tiếp tục phát triển logic xử lý", "Chuẩn bị kế hoạch chi tiết cho API KHTN FoxOne (deadline 4/3)", "Review & test các thay đổi KQTV"] }
+        { category: "Tuần 1 (23/2 - 27/2)", items: ["Tổ chức lại bộ KQTV chung: Tiếp tục phát triển logic xử lý", "Review & test các thay đổi KQTV", "Hỗ trợ bổ sung check trùng đơn hàng Online (Hot Request)"] },
+        { category: "Tuần 2 (2/3 - 6/3)", items: ["Bổ sung ghi nhận TrackingID đơn hàng từ SOP, Bóng chat", "Viết API báo cáo data phân phối cho SOP", "Chuẩn bị kế hoạch chi tiết cho API KHTN FoxOne (deadline 4/3)"] }
       ],
       issues: [
-        { title: "Resource dev chưa đáp ứng đủ với số lượng task hiện tại", desc: "Đội ngũ phát triển hiện tại chưa đủ nguồn lực để xử lý song song các task Backend, Integration, Database và Refactor BE. Cần bổ sung thêm developer hoặc điều chỉnh ưu tiên.", severity: "Medium", icon: "alert" },
-        { title: "Chưa được hỗ trợ tích hợp từ một số service external", desc: "Việc tích hợp từ một số service external (FoxOne, SR system) chưa được hỗ trợ đầy đủ, ảnh hưởng đến khả năng đồng bộ dữ liệu. Cần liên hệ các team liên quan để có roadmap rõ ràng.", severity: "High", icon: "alert" }
+        { title: "Resource dev chưa đáp ứng đủ với số lượng task hiện tại", desc: "Đội ngũ phát triển hiện tại chưa đủ nguồn lực để xử lý song song các task Backend, Integration, Database và Refactor BE. Cần bổ sung thêm developer hoặc điều chỉnh ưu tiên.", severity: "Medium", icon: "alert" }
       ]
     };
 
