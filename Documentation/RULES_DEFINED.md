@@ -74,13 +74,19 @@ defaultConfig = {
 
 ### Rule 5: Overall Progress Calculation
 ```javascript
-// Công thức tính
-overallProgress = Math.round((doneTasks / totalTasks) * 100)
+// Công thức tính (EXCLUDE PENDING TASKS)
+overallProgress = Math.round((doneTasks / (totalTasks - pendingCount)) * 100)
 
 // Quy tắc đếm
 - doneTasks = Số mainTasks có status === "DONE"
 - totalTasks = Số mainTasks tổng cộng
+- pendingCount = Số mainTasks có status === "PENDING"
+- Chỉ tính progress từ DONE + IN PROGRESS tasks (loại bỏ PENDING)
 - Làm tròn đến số nguyên gần nhất
+
+// Ví dụ cho FCP:
+- totalTasks = 12, doneTasks = 5, pendingCount = 1
+- overallProgress = (5 / (12 - 1)) * 100 = (5/11) * 100 = 45%
 ```
 
 ---
@@ -345,6 +351,79 @@ issues_label: "Vấn đề"                   // Issues tab
 ```
 
 **Nguyên nhân:** Giúp user biết thông tin dashboard có mới hay không, tránh dùng dữ liệu cũ.
+```
+
+---
+
+### Rule 22: Project-Specific Group Assignment (FCP, Custom Projects)
+```
+**Mục đích:** Các project khác nhau có thể có group fields khác nhau
+**Quy tắc:**
+- OmniSell, WSale: Sử dụng group từ GROUP_ASSIGNMENT_RULES.md
+- FCP & Custom: Định nghĩa group riêng theo đặc thù project
+- Mỗi group phải có cặp màu định sẵn (bg/color)
+
+**FCP Project Groups:**
+- Backend: #3b82f6 (Blue) - Backend logic, API endpoints, database logic
+- API: #ec4899 (Pink) - API contracts, OpenAPI, API standardization
+- Frontend: #06b6d4 (Cyan) - UI/UX, web pages, responsive design
+- QA: #f59e0b (Amber) - Testing, security testing (CSOC), UAT
+- Documentation: #10b981 (Green) - Knowledge transfer, handover, documentation
+- Integration: #6366f1 (Indigo) - 3rd party integration, ERP connection
+
+**Custom Project Example:**
+```javascript
+const groupColors = {
+  "Backend": { bg: "#3b82f620", color: "#3b82f6" },
+  "API": { bg: "#ec489920", color: "#ec4899" },
+  "Frontend": { bg: "#06b6d420", color: "#06b6d4" },
+  "QA": { bg: "#f59e0b20", color: "#f59e0b" },
+  "Documentation": { bg: "#10b98120", color: "#10b981" },
+  "Integration": { bg: "#6366f120", color: "#6366f1" }
+};
+```
+
+**Status Mapping cho Project Phức Tạp:**
+- Translate các custom status thành DONE/IN PROGRESS/PENDING
+- FCP example:
+  - "DONE DEV / STAGING READY" → DONE
+  - "IN QC/PO/CSOC TEST, LEAD REVIEW, READY FOR QC/UAT/CSOC" → IN PROGRESS
+  - "PENDING" → PENDING
+```
+
+---
+
+### Rule 23: FCP-Specific Task Grouping by Sprint (FCP Only)
+```
+**Mục đích:** Hiển thị tasks theo Sprint để dễ tracking tiến độ từng sprint
+**Chỉ áp dụng cho:** FCP project (không áp dụng WSale, OmniSell)
+
+**Cách thực hiện:**
+1. Extract Sprint từ task title:
+   - "[Sprint 4 - S1]" → Sprint 4 - S1
+   - "[Sprint 5 - S2]" → Sprint 5 - S2
+   - "[Sprint 6 - S3]" → Sprint 6 - S3
+   - "[Triển khai production]" → Triển khai production
+   - "[Tích hợp...]" → Tích hợp Fox-ERP
+
+2. Group tasks by Sprint (theo order trên)
+
+3. Hiển thị mỗi Sprint group với:
+   - Header với icon + tên sprint + số tasks
+   - Các tasks xếp hàng trong group
+   - Màu nền khác nhau cho mỗi sprint
+
+**Sprint Colors:**
+- Sprint 4 - S1: Blue (#3b82f6) - icon 🔧
+- Sprint 5 - S2: Pink (#ec4899) - icon 🛒
+- Sprint 6 - S3: Cyan (#06b6d4) - icon 🏠
+- Triển khai production: Amber (#f59e0b) - icon 🚀
+- Tích hợp Fox-ERP: Indigo (#6366f1) - icon 🔗
+
+**Lợi ích:**
+- Dễ thấy các task nằm trong sprint nào
+- Dễ tracking Sprint progress riêng biệt
+- Dễ dàng quản lý dependency giữa các sprint
 ```
 
 ---

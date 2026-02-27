@@ -3,7 +3,7 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WSale Project Dashboard</title>
+  <title>FCP Project Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -56,7 +56,7 @@
     }
     
     .gradient-bg {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
     }
     
     .group-badge {
@@ -75,13 +75,13 @@
       background_color: "#ffffff",
       surface_color: "#f8fafc",
       text_color: "#1e293b",
-      primary_action: "#6366f1",
-      secondary_action: "#8b5cf6",
-      project_name: "WSale Project",
-      project_id: "WSL",
-      version: "1.5",
-      release_date: "29/04/2026",
-      iteration_goal: "Nâng cấp hạ tầng K8s, hoàn thành LDP V.VIP MKT & Camera, tiến hành phân tích LDP V.VIP Map, tiếp tục phát triển Autocall (blacklist/check trùng) và chuẩn bị Mobile SOP.",
+      primary_action: "#06b6d4",
+      secondary_action: "#0891b2",
+      project_name: "FCP Project",
+      project_id: "FCP",
+      version: "1.0",
+      release_date: "31/03/2026",
+      iteration_goal: "Quản lý gói bán & giá bán (Sprint 4), xây dựng checkout (Sprint 5), trang chủ Internet & Tong dai wifi (Sprint 6), triển khai production, tích hợp FoxOne ERP.",
       progress_label: "Tiến độ tổng thể",
       version_label: "Version",
       deadline_label: "Ngày Release",
@@ -93,39 +93,53 @@
     let activeTab = 'dashboard';
     
     const projectData = {
-      overallProgress: 50,
-      totalTasks: 7,
-      doneTasks: 3,
+      overallProgress: 45,
+      totalTasks: 12,
+      doneTasks: 5,
       mainTasks: [
-        { title: "Nâng cấp hạ tầng K8s cụm API TLS Inside (1/1-30/1)", status: "IN PROGRESS", progress: "95%", group: "Infrastructure" },
-        { title: "LDP V.VIP MKT: Bổ sung nhận diện tập data từ FMI (5/1-9/1)", status: "DONE", progress: "100%", group: "Marketing" },
-        { title: "HotRequest_ Upgrade chính sách Swap Modem Wifi 6 cụm dịch vụ Nâng cấp V.VIP (23/02-25/02)", status: "DONE", progress: "100%", group: "Features" },
-        { title: "LDP V.VIP Map: Tra cứu hạ tầng Wifi 7 & TTKD/VPGD (12/2, 13/2 → Tết → 17/3-24/3)", status: "PENDING", progress: "0%", group: "Features" },
-        { title: "Autocall: Check blacklist, check trùng SĐT chính chủ (02/2-06/03)", status: "IN PROGRESS", progress: "70%", group: "Automation" },
-        { title: "Nâng cấp Camera (5/2-11/2)", status: "DONE", progress: "100%", group: "Features" },
-        { title: "WSale bản Mobile SOP (25/3-29/4)", status: "IN PROGRESS", progress: "0%", group: "Development" }
+        { title: "[Sprint 4 - S1] Quản lý gói bán - Bỏ unique + default (Budget: 6 tasks)", status: "DONE", progress: "100%", group: "Backend" },
+        { title: "[Sprint 4 - S1] Quản lý giá bán & SKU - Liên kết giá, rename field (Budget: 4 tasks)", status: "DONE", progress: "100%", group: "Backend" },
+        { title: "[Sprint 4 - S1] OpenAPI lấy thông tin chi tiết gói bán v2", status: "DONE", progress: "100%", group: "API" },
+        { title: "[Sprint 4 - S1] Chuẩn hóa API phase 1 (Sku, Danh mục, Phí, Đặc tính)", status: "IN PROGRESS", progress: "50%", group: "API" },
+        { title: "[Sprint 4 - S1] Bàn giao module quản lý giá bán, gói bán (27/02-27/02)", status: "IN PROGRESS", progress: "25%", group: "Documentation" },
+        { title: "[Sprint 5 - S2] Dựng model checkout", status: "IN PROGRESS", progress: "80%", group: "Backend" },
+        { title: "[Sprint 5 - S2] API Tạo mới checkout (session)", status: "IN PROGRESS", progress: "80%", group: "API" },
+        { title: "[Sprint 6 - S3] Trang danh mục Internet (Tong dai wifi)", status: "DONE", progress: "100%", group: "Frontend" },
+        { title: "[Sprint 6 - S3] Trang chủ (Tong dai wifi)", status: "DONE", progress: "100%", group: "Frontend" },
+        { title: "[Sprint 6 - S3] Trang subcategory Internet & CMS Tong dai wifi", status: "IN PROGRESS", progress: "75%", group: "Frontend" },
+        { title: "[Triển khai production] CSOC Pentest (ECP + Tongdaiwifi)", status: "IN PROGRESS", progress: "25%", group: "QA" },
+        { title: "[Tích hợp Fox-ERP] Chuyển đổi giao diện & tích hợp FOX-ERP", status: "PENDING", progress: "0%", group: "Integration" }
       ],
       nextTwoWeeks: [
-        { category: "Tuần 1 (23/2 - 27/2)", items: [
-            "Autocall: Test phần blacklist và check trùng autocall, phân tích yêu cầu bổ sung thêm rule (23/2 - 27/2)",
-            "Bổ sung rule Swap Wifi 7 (25/2 - 26/2)"
+        { category: "Tuần 1 (2/3 - 6/3)", items: [
+            "[Sprint 4] Fix bug UAT + Sprint Review & Planning",
+            "[Sprint 5] Sprint Review & Planning",
+            "[Triển khai production] CSOC Pentest: Fix bug ECP Producthub, OpenAPI, Tongdaiwifi",
+            "[Triển khai production] Request triển khai database staging & production"
           ] },
-        { category: "Tuần 2 (2/3 - 6/3)", items: [
-            "Autocall: Xử lý code bổ sung thêm rule check trùng, check giữa 2 kênh dialo và inside (02/3 - 06/3)"
+        { category: "Tiếp theo (tuần 2+)", items: [
+            "[Sprint 6] Trang thu Lead (Lead capture page)",
+            "[CMS Tongdaiwifi] Xây dựng module FAQs mapping vào Landing Page",
+            "[Checkout] Logic tính toán lại đơn hàng & Logic ghi nhận/phân bổ khuyến mại",
+            "[Triển khai] Request triển khai database production cho ecom-platform-ordering-service-api"
           ] }
       ],
       issues: [
-        { title: "Resource dev chưa đáp ứng đủ với số lượng task hiện tại", desc: "Đội ngũ phát triển hiện tại chưa đủ nguồn lực để xử lý song song các task Infrastructure, LDP V.VIP, Autocall và Mobile SOP. Cần bổ sung thêm developer hoặc điều chỉnh ưu tiên.", severity: "Medium", icon: "alert" },
-        { title: "Chưa được hỗ trợ tích hợp Order Service từ SPF", desc: "Việc tích hợp Order Service từ hệ thống SPF chưa được hỗ trợ, ảnh hưởng đến khả năng đồng bộ dữ liệu đơn hàng. Cần liên hệ team SPF để có roadmap rõ ràng.", severity: "High", icon: "alert" }
+        { title: "Vấn đề nguồn lực CSOC không cố định", desc: "Nguồn lực CSOC không được gán cố định vào sprint như DEV, QC, PO, BA. Khó xác nhận trạng thái DONE 100% khi phụ thuộc vào CSOC. Cần xác định rõ SLA triển khai CSOC.", severity: "High", icon: "alert" },
+        { title: "Estimate time, start time, end time chưa rõ ràng", desc: "Nhiều task chưa có thời gian bắt đầu, kết thúc cụ thể (?-?). Làm khó việc dự báo timeline và quản lý tiến độ project.", severity: "High", icon: "alert" },
+        { title: "Chốt phương án chưa rõ ràng, hay thay đổi", desc: "Phương án được chốt lúc đầu sprint nhưng giữa sprint lại thay đổi. Gây ra sai hướng, không chốt được thời gian làm & kết thúc chính xác.", severity: "Medium", icon: "alert" },
+        { title: "Tài liệu URD chậm & thiếu sót", desc: "Tài liệu yêu cầu thường chậm hơn so với timeline phát triển, gây vướng mắc cho request CSOC và triển khai production.", severity: "Medium", icon: "alert" }
       ]
     };
 
     const groupColors = {
-      "Infrastructure": { bg: "#3b82f620", color: "#3b82f6" },
-      "Marketing": { bg: "#10b98120", color: "#10b981" },
-      "Features": { bg: "#f59e0b20", color: "#f59e0b" },
-      "Automation": { bg: "#8b5cf620", color: "#8b5cf6" },
-      "Development": { bg: "#ec489920", color: "#ec4899" }
+      "Backend": { bg: "#3b82f620", color: "#3b82f6" },
+      "API": { bg: "#ec489920", color: "#ec4899" },
+      "Frontend": { bg: "#06b6d420", color: "#06b6d4" },
+      "Database": { bg: "#8b5cf620", color: "#8b5cf6" },
+      "QA": { bg: "#f59e0b20", color: "#f59e0b" },
+      "Documentation": { bg: "#10b98120", color: "#10b981" },
+      "Integration": { bg: "#6366f120", color: "#6366f1" }
     };
 
     function renderApp(config) {
@@ -174,7 +188,7 @@
                 <circle cx="12" cy="12" r="10"></circle>
                 <polyline points="12 6 12 12 16 14"></polyline>
               </svg>
-              <span>Next Plan</span>
+              <span>Roadmap</span>
             </button>
             <button id="tab-issues" class="tab-button px-4 py-2 rounded-xl font-bold flex items-center space-x-2" style="font-size: ${baseSize * 0.85}px;">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -282,7 +296,7 @@
                 </div>
                 <div>
                   <p class="font-semibold mb-1" style="color: ${config.text_color}; opacity: 0.7; font-size: ${baseSize * 0.8}px;">Status</p>
-                  <p class="font-bold" style="color: #10b981; font-size: ${baseSize * 1.2}px;">On Track</p>
+                  <p class="font-bold" style="color: #f59e0b; font-size: ${baseSize * 1.2}px;">In Progress</p>
                 </div>
               </div>
             </div>
@@ -290,7 +304,7 @@
 
           <!-- Progress Overview -->
           <div class="card-hover p-4 rounded-xl shadow-xl" style="background-color: ${config.surface_color};">
-            <h2 class="font-bold mb-3" style="color: ${config.text_color}; font-size: ${baseSize * 1.2}px;">Tổng quan tiến độ Version 2.2</h2>
+            <h2 class="font-bold mb-3" style="color: ${config.text_color}; font-size: ${baseSize * 1.2}px;">Tổng quan tiến độ Version 1.0</h2>
             <div class="space-y-3">
               <div class="flex justify-between items-center mb-2">
                 <span class="font-semibold" style="color: ${config.text_color}; font-size: ${baseSize * 0.95}px;">Tiến độ hoàn thành</span>
@@ -324,10 +338,10 @@
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                   <polyline points="22 4 12 14.01 9 11.01"></polyline>
                 </svg>
-                <span>Hoàn thành gần đây</span>
+                <span>Hoàn thành</span>
               </h3>
               <div class="space-y-2">
-                ${projectData.mainTasks.filter(t => t.status === 'DONE').slice(-3).map(task => `
+                ${projectData.mainTasks.filter(t => t.status === 'DONE').map(task => `
                   <div class="slide-in flex items-start space-x-2 p-3 rounded-xl" style="background-color: ${config.background_color};">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" class="flex-shrink-0 mt-0.5">
                       <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -354,7 +368,7 @@
                 <span>Đang thực hiện</span>
               </h3>
               <div class="space-y-2">
-                ${projectData.mainTasks.filter(t => t.status === 'IN PROGRESS').map(task => `
+                ${projectData.mainTasks.filter(t => t.status === 'IN PROGRESS').slice(0, 3).map(task => `
                   <div class="slide-in flex items-start space-x-2 p-3 rounded-xl" style="background-color: ${config.background_color};">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" class="flex-shrink-0 mt-0.5">
                       <circle cx="12" cy="12" r="10"></circle>
@@ -378,40 +392,80 @@
 
     function renderTasks(config) {
       const baseSize = config.font_size || defaultConfig.font_size;
-      return `
-        <div class="space-y-6 animate-in">
-          <div class="card-hover p-8 rounded-2xl shadow-xl" style="background-color: ${config.surface_color};">
-            <h2 class="font-bold mb-8" style="color: ${config.text_color}; font-size: ${baseSize * 1.5}px;">Danh sách nhiệm vụ - Version 1.5</h2>
-            <div class="space-y-4">
-              ${projectData.mainTasks.map((task, index) => {
-                const isDone = task.status === 'DONE';
-                const statusColor = isDone ? '#10b981' : '#f59e0b';
-                return `
-                  <div class="flex items-center justify-between p-5 rounded-xl border-2 card-hover" style="background-color: ${config.background_color}; border-color: ${groupColors[task.group].color}40;">
-                    <div class="flex items-center space-x-5 flex-1">
-                      <span class="font-bold text-center rounded-lg px-3 py-2" style="color: ${config.text_color}; background-color: ${config.surface_color}; font-size: ${baseSize * 0.9}px; min-width: 40px;">#${index + 1}</span>
-                      <div class="flex-1">
-                        <p class="font-semibold mb-2" style="color: ${config.text_color}; font-size: ${baseSize * 1.05}px; line-height: 1.5;">${task.title}</p>
-                        <div class="flex items-center space-x-2 mt-2">
-                          <span class="group-badge px-3 py-1 rounded-full text-xs font-bold" style="background-color: ${groupColors[task.group].bg}; color: ${groupColors[task.group].color};">${task.group}</span>
-                          <span class="px-3 py-1 rounded-full text-xs font-bold" style="background-color: ${config.primary_action}20; color: ${config.primary_action};">${task.progress}</span>
-                        </div>
-                      </div>
-                    </div>
-                    <span class="status-badge px-4 py-2 rounded-xl font-bold flex items-center space-x-2 shadow-lg" style="background-color: ${statusColor}30; color: ${statusColor}; font-size: ${baseSize * 0.85}px;">${task.status}</span>
-                  </div>
-                `;
-              }).join('')}
-            </div>
-          </div>
-        </div>
-      `;
+      
+      // Group tasks by sprint
+      const sprintGroups = {};
+      const sprintOrder = ['Sprint 4 - S1', 'Sprint 5 - S2', 'Sprint 6 - S3', 'Triển khai production', 'Tích hợp Fox-ERP'];
+      
+      projectData.mainTasks.forEach((task, index) => {
+        let sprint = 'Khác';
+        if (task.title.includes('Sprint 4')) sprint = 'Sprint 4 - S1';
+        else if (task.title.includes('Sprint 5')) sprint = 'Sprint 5 - S2';
+        else if (task.title.includes('Sprint 6')) sprint = 'Sprint 6 - S3';
+        else if (task.title.includes('Triển khai')) sprint = 'Triển khai production';
+        else if (task.title.includes('Tích hợp')) sprint = 'Tích hợp Fox-ERP';
+        
+        if (!sprintGroups[sprint]) {
+          sprintGroups[sprint] = [];
+        }
+        sprintGroups[sprint].push({ ...task, originalIndex: index + 1 });
+      });
+      
+      const sprintColors = {
+        'Sprint 4 - S1': { bg: '#3b82f620', color: '#3b82f6', icon: '🔧' },
+        'Sprint 5 - S2': { bg: '#ec489920', color: '#ec4899', icon: '🛒' },
+        'Sprint 6 - S3': { bg: '#06b6d420', color: '#06b6d4', icon: '🏠' },
+        'Triển khai production': { bg: '#f59e0b20', color: '#f59e0b', icon: '🚀' },
+        'Tích hợp Fox-ERP': { bg: '#6366f120', color: '#6366f1', icon: '🔗' }
+      };
+      
+      let html = '<div class="space-y-6 animate-in"><div class="card-hover p-8 rounded-2xl shadow-xl" style="background-color: ' + config.surface_color + ';">';
+      html += '<h2 class="font-bold mb-8" style="color: ' + config.text_color + '; font-size: ' + (baseSize * 1.5) + 'px;">Danh sách nhiệm vụ - Grouped by Sprint</h2>';
+      html += '<div class="space-y-8">';
+      
+      sprintOrder.forEach(sprint => {
+        if (!sprintGroups[sprint] || sprintGroups[sprint].length === 0) return;
+        
+        const sprintColor = sprintColors[sprint];
+        const tasks = sprintGroups[sprint];
+        
+        html += '<div class="slide-in">';
+        html += '<div class="flex items-center space-x-3 mb-5 p-4 rounded-xl" style="background-color: ' + sprintColor.bg + ';">';
+        html += '<span style="font-size: 24px;">' + sprintColor.icon + '</span>';
+        html += '<h3 class="font-bold" style="color: ' + sprintColor.color + '; font-size: ' + (baseSize * 1.25) + 'px;">' + sprint + '</h3>';
+        html += '</div>';
+        
+        html += '<div class="space-y-3 ml-2">';
+        tasks.forEach(task => {
+          const isDone = task.status === 'DONE';
+          const statusColor = isDone ? '#10b981' : (task.status === 'IN PROGRESS' ? '#f59e0b' : '#6b7280');
+          
+          html += '<div class="flex items-center justify-between p-5 rounded-xl border-2 card-hover" style="background-color: ' + config.background_color + '; border-color: ' + groupColors[task.group].color + '40; border-left: 4px solid ' + groupColors[task.group].color + ';">';
+          html += '<div class="flex items-center space-x-5 flex-1">';
+          html += '<span class="font-bold text-center rounded-lg px-3 py-2" style="color: ' + config.text_color + '; background-color: ' + config.surface_color + '; font-size: ' + (baseSize * 0.9) + 'px; min-width: 40px;">#' + task.originalIndex + '</span>';
+          html += '<div class="flex-1">';
+          html += '<p class="font-semibold mb-2" style="color: ' + config.text_color + '; font-size: ' + (baseSize * 1.05) + 'px; line-height: 1.5;">' + task.title + '</p>';
+          html += '<div class="flex items-center space-x-2 mt-2">';
+          html += '<span class="group-badge px-3 py-1 rounded-full text-xs font-bold" style="background-color: ' + groupColors[task.group].bg + '; color: ' + groupColors[task.group].color + ';">' + task.group + '</span>';
+          html += '<span class="px-3 py-1 rounded-full text-xs font-bold" style="background-color: ' + config.primary_action + '20; color: ' + config.primary_action + ';">' + task.progress + '</span>';
+          html += '</div>';
+          html += '</div>';
+          html += '</div>';
+          html += '<span class="status-badge px-4 py-2 rounded-xl font-bold flex items-center space-x-2 shadow-lg" style="background-color: ' + statusColor + '30; color: ' + statusColor + '; font-size: ' + (baseSize * 0.85) + 'px;">' + task.status + '</span>';
+          html += '</div>';
+        });
+        html += '</div>';
+        html += '</div>';
+      });
+      
+      html += '</div></div></div>';
+      return html;
     }
 
     function renderRoadmap(config) {
       const baseSize = config.font_size || defaultConfig.font_size;
       const categoryColors = [
-        { bg: '#3b82f620', color: '#3b82f6' },
+        { bg: '#06b6d420', color: '#06b6d4' },
         { bg: '#8b5cf620', color: '#8b5cf6' }
       ];
       
@@ -423,7 +477,7 @@
                 <circle cx="12" cy="12" r="10"></circle>
                 <polyline points="12 6 12 12 16 10"></polyline>
               </svg>
-              <span>Next Plan</span>
+              <span>Roadmap</span>
             </h2>
             <div class="space-y-8">
               ${projectData.nextTwoWeeks.map((category, idx) => `

@@ -1,6 +1,6 @@
 # Context: Cách Tạo Report & HTML Dashboard Từ File Markdown
 
-**Updated:** 30/01/2026 - Support cho WSale, OmniSell, và các dự án khác
+**Updated:** 27/02/2026 - Support cho WSale, OmniSell, FCP và các dự án khác
 
 ## I. QUY TRÌNH TẠO REPORT CHO DỰ ÁN MỚI
 
