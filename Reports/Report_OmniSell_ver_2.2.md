@@ -21,7 +21,7 @@ OmniSell
 - HotRequest_Bổ sung check trùng đơn hàng Online (24/2-02/3): 60% [IN PROGRESS] - Backend
 - HotRequest_Bổ sung nhận diện KHTN từ bán thêm dịch vụ CAM nguồn Hi-FPT (Upgrade ghi nhận thông tin Order_Type)  26/02/2026 - 04/03/2026: 20% [IN PROGRESS] - Backend
 - HotRequest_Bổ sung nhận diện KHTN từ app FPT Play (Upgrade ghi nhận thông tin Order_SA) : 26/02/2026 - 04/03/2026: 0% [IN PROGRESS] - Backend
-- Tổ chức lại bộ KQTV chung giữa các kênh SOP-WSale-OmniSell (29/1-11/2): 100% [DONE] - Backend
+- Tổ chức lại bộ KQTV chung giữa các kênh SOP-WSale-OmniSell (29/1-11/2): 80% [IN PROGRESS] - Backend
 - Bổ sung API báo cáo data phân phối cho SOP và thêm TrackingId nhận biết chiến dịch (12/2-13/2): 0% [IN PROGRESS] - Backend
 - Cung cấp API KHTN cho FoxOne (23/2-4/3): 10% [IN PROGRESS] - API, Backend
 - Tiếp nhận KHTN từ SR ghi nhận vào SR nonSHD (KHTN) (4/3-17/3): 0% [IN PROGRESS] - Backend, Database
@@ -35,7 +35,6 @@ OmniSell
 - Bổ sung check trùng Checklist tư vấn Telesales: [PENDING]
 5. Việc đã hoàn thành 
 - Nhận KHTN VIP 7 DKOL - GTEL PAY(BCA) [DONE]
-- Tổ chức lại bộ KQTV chung giữa các kênh SOP-WSale-OmniSell (29/1-11/2): 100% [DONE]
 6. Công việc 2 tuần tiếp (23/2 - 06/3)
 - Tuần 1 (23/2 - 27/2):
     - Tổ chức lại bộ KQTV chung: Tiếp tục phát triển logic xử lý
