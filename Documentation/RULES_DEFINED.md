@@ -322,6 +322,33 @@ issues_label: "Vấn đề"                   // Issues tab
 
 ---
 
+### Rule 21: Last Updated Field (Mandatory for public/index.html)
+```
+**Mục đích:** Hiển thị ngày cập nhật cuối cùng của dashboard chính
+**Vị trí:** Footer của public/index.html (file chính công khai)
+**Format:** 📅 Last Updated: Month DD, YYYY (tiếng Anh)
+**Quy tắc:**
+- PHẢI cập nhật LIÊN TỤC khi có thay đổi dữ liệu từ Report files
+- Sử dụng định dạng ngày: Month DD, YYYY (ví dụ: February 27, 2026)
+- Luôn sử dụng thời gian hiện tại (today/now) khi update dữ liệu
+- Phù hợp cho tất cả các dự án (WSale, OmniSell, v.v.)
+- **KHÔNG** thêm rule này vào file Agents.md
+
+**Ví dụ cập nhật:**
+- Report WSale được update → Cập nhật Last Updated thành hôm nay
+- Report OmniSell được update → Cập nhật Last Updated thành hôm nay
+- Nếu cả 2 report được update → Vẫn là 1 Last Updated chung (ngày gần nhất)
+
+**Implementation:**
+```html
+<p>📅 Last Updated: February 27, 2026</p>
+```
+
+**Nguyên nhân:** Giúp user biết thông tin dashboard có mới hay không, tránh dùng dữ liệu cũ.
+```
+
+---
+
 ## 🔍 VALIDATION RULES
 
 ### Validation Rule 1: Task Title
