@@ -18,7 +18,9 @@ OmniSell
 - Staging - 2.2: 31/03/2026
 4. Tiến độ
 - Nhận KHTN VIP 7 DKOL - GTEL PAY(BCA) (26/1-28/1): 100% [DONE] - Backend
-- Bổ sung check trùng đơn hàng Online (24/2-27/2): 60% [IN PROGRESS] - Backend
+- HotRequest_Bổ sung check trùng đơn hàng Online (24/2-02/3): 60% [IN PROGRESS] - Backend
+- HotRequest_Bổ sung nhận diện KHTN từ bán thêm dịch vụ CAM nguồn Hi-FPT (Upgrade ghi nhận thông tin Order_Type)  26/02/2026 - 04/03/2026: 20% [IN PROGRESS] - Backend
+- HotRequest_Bổ sung nhận diện KHTN từ app FPT Play (Upgrade ghi nhận thông tin Order_SA) : 26/02/2026 - 04/03/2026: 0% [IN PROGRESS] - Backend
 - Tổ chức lại bộ KQTV chung giữa các kênh SOP-WSale-OmniSell (29/1-11/2): 100% [DONE] - Backend
 - Bổ sung API báo cáo data phân phối cho SOP và thêm TrackingId nhận biết chiến dịch (12/2-13/2): 0% [IN PROGRESS] - Backend
 - Cung cấp API KHTN cho FoxOne (23/2-4/3): 10% [IN PROGRESS] - API, Backend
@@ -42,6 +44,8 @@ OmniSell
 - Tuần 2 (2/3 - 6/3):
     - Bổ sung ghi nhận TrackingID đơn hàng từ SOP, Bóng chat
     - Viết API báo cáo data phân phối cho SOP
+    - Bổ sung nhận diện KHTN từ bán thêm dịch vụ CAM nguồn Hi-FPT (Upgrade ghi nhận thông tin Order_Type)
+    - Bổ sung nhận diện KHTN từ app FPT Play (Upgrade ghi nhận thông tin Order_SA)
     - Chuẩn bị kế hoạch chi tiết cho API KHTN FoxOne (deadline 4/3)
 7. Vấn đề
 - Resource dev chưa đáp ứng đủ với số lượng task hiện tại

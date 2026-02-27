@@ -96,12 +96,14 @@
     let activeTab = 'dashboard';
     
     const projectData = {
-      overallProgress: 15,
-      totalTasks: 13,
+      overallProgress: 13,
+      totalTasks: 15,
       doneTasks: 2,
       mainTasks: [
         { title: "Nhận KHTN VIP 7 DKOL - GTEL PAY(BCA) (26/1-28/1)", status: "DONE", progress: "100%", group: "Backend" },
-        { title: "Bổ sung check trùng đơn hàng Online (24/2-27/2)", status: "IN PROGRESS", progress: "60%", group: "Backend" },
+        { title: "HotRequest_Bổ sung check trùng đơn hàng Online (24/2-02/3)", status: "IN PROGRESS", progress: "60%", group: "Backend" },
+        { title: "HotRequest_Bổ sung nhận diện KHTN từ bán thêm dịch vụ CAM nguồn Hi-FPT (26/02-04/3)", status: "IN PROGRESS", progress: "20%", group: "Backend" },
+        { title: "HotRequest_Bổ sung nhận diện KHTN từ app FPT Play (26/02-04/3)", status: "IN PROGRESS", progress: "0%", group: "Backend" },
         { title: "Tổ chức lại bộ KQTV chung giữa các kênh SOP-WSale-OmniSell (29/1-11/2)", status: "DONE", progress: "100%", group: "Backend" },
         { title: "Bổ sung API báo cáo data phân phối cho SOP và thêm TrackingId nhận biết chiến dịch (12/2-13/2)", status: "IN PROGRESS", progress: "0%", group: "Backend" },
         { title: "Cung cấp API KHTN cho FoxOne (23/2-4/3)", status: "IN PROGRESS", progress: "10%", group: "API" },
@@ -116,7 +118,7 @@
       ],
       nextTwoWeeks: [
         { category: "Tuần 1 (23/2 - 27/2)", items: ["Tổ chức lại bộ KQTV chung: Tiếp tục phát triển logic xử lý", "Review & test các thay đổi KQTV", "Hỗ trợ bổ sung check trùng đơn hàng Online (Hot Request)"] },
-        { category: "Tuần 2 (2/3 - 6/3)", items: ["Bổ sung ghi nhận TrackingID đơn hàng từ SOP, Bóng chat", "Viết API báo cáo data phân phối cho SOP", "Chuẩn bị kế hoạch chi tiết cho API KHTN FoxOne (deadline 4/3)"] }
+        { category: "Tuần 2 (2/3 - 6/3)", items: ["Bổ sung ghi nhận TrackingID đơn hàng từ SOP, Bóng chat", "Viết API báo cáo data phân phối cho SOP", "Bổ sung nhận diện KHTN từ bán thêm dịch vụ CAM nguồn Hi-FPT (Upgrade Order_Type)", "Bổ sung nhận diện KHTN từ app FPT Play (Upgrade Order_SA)", "Chuẩn bị kế hoạch chi tiết cho API KHTN FoxOne (deadline 4/3)"] }
       ],
       issues: [
         { title: "Resource dev chưa đáp ứng đủ với số lượng task hiện tại", desc: "Đội ngũ phát triển hiện tại chưa đủ nguồn lực để xử lý song song các task Backend, Integration, Database và Refactor BE. Cần bổ sung thêm developer hoặc điều chỉnh ưu tiên.", severity: "Medium", icon: "alert" }
