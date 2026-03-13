@@ -18,11 +18,11 @@ OmniSell
 - Staging - 2.2: 31/03/2026
 4. Tiến độ
 - Nhận KHTN VIP 7 DKOL - GTEL PAY(BCA) (26/1-28/1): 100% [DONE] - Backend
-- HotRequest_Bổ sung check trùng đơn hàng Online (24/2-02/3): 100% [DONE] - Backend
-- HotRequest_Bổ sung nhận diện KHTN từ bán thêm dịch vụ CAM nguồn Hi-FPT (Upgrade ghi nhận thông tin Order_Type)  26/02/2026 - 04/03/2026: 100% [DONE] - Backend
-- HotRequest_Bổ sung nhận diện KHTN từ app FPT Play (Upgrade ghi nhận thông tin Order_SA) : 26/02/2026 - 04/03/2026: 80% [IN PROGRESS] - Backend
+- HotRequest_Check trùng đơn hàng Online (24/2-02/3): 100% [DONE] - Backend
+- HotRequest_Nhận diện KHTN từ bán thêm dịch vụ CAM nguồn Hi-FPT (Upgrade ghi nhận thông tin Order_Type)  26/02/2026 - 04/03/2026: 100% [DONE] - Backend
+- HotRequest_Nhận diện KHTN từ app FPT Play (Upgrade ghi nhận thông tin Order_SA) : 26/02/2026 - 04/03/2026: 80% [IN PROGRESS] - Backend
 - Tổ chức lại bộ KQTV chung giữa các kênh SOP-WSale-OmniSell (29/1-11/2): 100% [DONE] - Backend
-- Bổ sung API báo cáo cho SOP (12/2-13/2): 100% [DONE] - Backend
+- Cung cấp API báo cáo cho SOP (12/2-13/2): 100% [DONE] - Backend
 - Bổ sung TrackingId nhận diện chiến dịch từ bóng chat SOP (27/2-4/3): 100% [DONE] - Backend
 - Điều chỉnh API AM mới thay thế cụm API Access Trade: 100% [DONE] - Backend
 - Cung cấp API KHTN cho FoxOne (23/2-4/3): 10% [IN PROGRESS] - API, Backend
@@ -37,10 +37,10 @@ OmniSell
 5. Việc đã hoàn thành 
 - Nhận KHTN VIP 7 DKOL - GTEL PAY(BCA) [DONE]
 - Bổ sung TrackingId nhận diện chiến dịch từ bóng chat SOP [DONE]
-- HotRequest_Bổ sung check trùng đơn hàng Online [DONE]
-- HotRequest_Bổ sung nhận diện KHTN từ bán thêm dịch vụ CAM nguồn Hi-FPT (Upgrade ghi nhận thông tin Order_Type) [DONE]
+- HotRequest_Check trùng đơn hàng Online [DONE]
+- HotRequest_Nhận diện KHTN từ bán thêm dịch vụ CAM nguồn Hi-FPT (Upgrade ghi nhận thông tin Order_Type) [DONE]
 - Tổ chức lại bộ KQTV chung giữa các kênh SOP-WSale-OmniSell (29/1-11/2) [DONE]
-- Bổ sung API báo cáo cho SOP (12/2-13/2) [DONE]
+- Cung cấp API báo cáo cho SOP (12/2-13/2) [DONE]
 - Điều chỉnh API AM mới thay thế cụm API Access Trade [DONE]
 6. Công việc 2 tuần tiếp (16/3 - 27/3)
 - Tuần 3 (16/3 - 20/3):
