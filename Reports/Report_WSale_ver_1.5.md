@@ -10,18 +10,18 @@ WSale
 3. Thời gian release
 - Staging - 1.5:  29/04/2026
 4. Tiến độ
-- Nâng cấp hạ tầng K8s cụm API TLS Inside (1/1-30/1): 100% [DONE] - Infrastructure
+- Nâng cấp hạ tầng K8s cụm API TLS Inside (2/1-30/1): 100% [DONE] - Infrastructure
 - LDP V.VIP MKT (5/1-9/1): 100% [DONE] - Marketing
-- HotRequest_ Upgrade chính sách Swap Modem Wifi 6 cụm dịch vụ Nâng cấp V.VIP (23/02-25/02): 100% [DONE] - Features
+- HotRequest_Upgrade chính sách Swap Modem Wifi 6 cụm dịch vụ Nâng cấp V.VIP (23/02-25/02): 100% [DONE] - Features
 - LDP V.VIP Map (12/2, 13/2 → Tết → 17/3-24/3): 0% [PENDING] - Features
 - Autocall (02/2-06/03): 70% [IN PROGRESS] - Automation
 - Nâng cấp Camera (5/2-11/2): 100% [DONE] - Features
 - WSale bản Mobile SOP (25/3-29/4): 0% [IN PROGRESS] - Development
 5. Việc đã hoàn thành 
-- Nâng cấp hạ tầng K8s cụm API TLS Inside (1/1-30/1): 100% [DONE]
+- Nâng cấp hạ tầng K8s cụm API TLS Inside (2/1-30/1): 100% [DONE]
 - LDP V.VIP MKT (5/1-9/1): 100% [DONE] - Marketing
 - Nâng cấp Camera (5/2-11/2): 100% [DONE] - Features
-- HotRequest_ Upgrade chính sách Swap Modem Wifi 6 cụm dịch vụ Nâng cấp V.VIP (23/02-25/02): 100% [DONE] - Features
+- HotRequest_Upgrade chính sách Swap Modem Wifi 6 cụm dịch vụ Nâng cấp V.VIP (23/02-25/02): 100% [DONE] - Features
 6. Công việc 2 tuần tiếp (16/3 - 27/3)
 - Tuần 3 (16/3 - 20/3):
     - Autocall: Hoàn thành test blacklist & check trùng giữa 2 kênh (16/3 - 20/3)
